@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         currencyPicker.dataSource = self
         currencyPicker.delegate = self
         coinManager.delegate = self
-        currencyPicker.delegate?.pickerView?(self.currencyPicker, didSelectRow: 0, inComponent: 0)
+        self.pickerView(self.currencyPicker, didSelectRow: 0, inComponent: 0)
     }
 }
 
