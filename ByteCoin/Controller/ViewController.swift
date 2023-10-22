@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         currencyPicker.dataSource = self
         currencyPicker.delegate = self
         coinManager.delegate = self
-        // Do any additional setup after loading the view.
+        currencyPicker.delegate?.pickerView?(self.currencyPicker, didSelectRow: 0, inComponent: 0)
     }
 }
 
@@ -49,8 +49,10 @@ extension ViewController: UIPickerViewDelegate {
 //MARK: - #CoinManagerDelegate
 extension ViewController: CoinManagerDelegate {
     func updateRate(rate: RateModel) {
-        bitCoinLabel.text = String(rate.rate)
-        currencyLabel.text = rate.currency
+        DispatchQueue.main.async {
+            self.bitCoinLabel.text = String(format: "%.1f", rate.rate)
+            self.currencyLabel.text = rate.currency
+        }
     }
     
     func setError(error: Error) {

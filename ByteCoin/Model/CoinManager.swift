@@ -16,7 +16,7 @@ protocol CoinManagerDelegate {
 
 struct CoinManager {
     let baseURL = "https://rest.coinapi.io/v1/exchangerate/BTC"
-    let apiKey = "74b9d9d431c55478190befba856c97a0"
+    let apiKey = "39AB2E23-A471-4E74-B294-37ABA7B1F1B6"
     
     let currencyArray = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR", "LBP"]
     
@@ -58,7 +58,7 @@ struct CoinManager {
         let decoder = JSONDecoder()
         do {
             let rate = try decoder.decode(Rate.self, from: data)
-            let rateModel = RateModel(rate: rate.rate, currency: rate.asset_id_base)
+            let rateModel = RateModel(rate: rate.rate, currency: rate.asset_id_quote)
             return rateModel
         } catch {
             delegate?.setError(error: error)
